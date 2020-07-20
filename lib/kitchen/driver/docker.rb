@@ -61,6 +61,8 @@ module Kitchen
       default_config :use_sudo, false
       default_config :wait_for_transport, true
 
+      default_config :package_name, nil
+
       default_config :build_context do |driver|
         !driver.remote_socket?
       end
@@ -128,6 +130,10 @@ module Kitchen
 
       def destroy(state)
         container.destroy(state)
+      end
+
+      def package(state)
+        container.package(state)
       end
 
       def wait_for_transport(state)
