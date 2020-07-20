@@ -134,7 +134,7 @@ module Kitchen
         end
 
         def container_ip_address(state)
-          cmd = "inspect --format '{{ .NetworkSettings.IPAddress }}'"
+          cmd = "inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'"
           cmd << " #{state[:container_id]}"
           docker_command(cmd).strip
         rescue
